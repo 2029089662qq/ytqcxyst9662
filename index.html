@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烟台汽车工程学院社团中心 - 连接学生与社团</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4a6fc7;
+            --secondary: #6a89cc;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --card-bg: #ffffff;
+            --transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #dfe6f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 3rem;
+        }
+        
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .carousel-item.active {
+            opacity: 1;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            text-align: center;
+        }
+        
+        .carousel-caption h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        .carousel-caption p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 1rem;
+            z-index: 10;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(74, 111, 199, 0.85), rgba(74, 111, 199, 0.85));
+            position: relative;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .section {
+            padding: 3rem 0;
+            transition: var(--transition);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #555;
+            max-width: 700px;
+            margin: 15px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            padding-left: 50px;
+            transition: var(--transition);
+        }
+        
+        .search-box input:focus {
+            box-shadow: 0 5px 25px rgba(74, 111, 199, 0.25);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        
+        .clubs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .club-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .club-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .club-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .club-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .club-card:hover .club-image img {
+            transform: scale(1.05);
+        }
+        
+        .club-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .club-category {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .club-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .club-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 1.2rem;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .club-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* 详情页样式 */
+        .detail-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 1000;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .detail-page.active {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .detail-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 3rem;
+        }
+        
+        .detail-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .detail-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .detail-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .detail-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .detail-info h1 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .detail-info .club-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .detail-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .detail-stat {
+            background: var(--light);
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .detail-stat h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .detail-stat p {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .detail-description {
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+        
+        .detail-description h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .detail-description h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .activities {
+            margin: 3rem 0;
+        }
+        
+        .activity-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .activity-image {
+            flex: 1;
+            min-width: 300px;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .activity-card:hover .activity-image img {
+            transform: scale(1.05);
+        }
+        
+        .activity-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .activity-date {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .activity-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .activity-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .member-card {
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .member-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .member-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary);
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+        
+        .member-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+            text-align: center;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin: 0.3rem;
+            }
+            
+            .carousel {
+                height: 400px;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+            
+            .detail-hero {
+                flex-direction: column;
+            }
+            
+            .activity-card {
+                flex-direction: column;
+            }
+            
+            .activity-image {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .carousel {
+                height: 350px;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            
+            .filters {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主页面 -->
+    <div class="main-page">
+        <!-- 头部导航 -->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <div class="logo">
+                        <i class="fas fa-users"></i>
+                        <span>烟台汽车工程学院社团中心</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="#" class="active">首页</a></li>
+                        <li><a href="#clubs">所有社团</a></li>
+                        <li><a href="#events">近期活动</a></li>
+                        <li><a href="#features">平台功能</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- 轮播图区域 -->
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://pic.rmb.bdstatic.com/bjh/250606/beautify/0af01492790ff112a1d9b365cbd337d6.jpeg" alt="社团活动">
+                    <div class="carousel-caption">
+                        <h3>烟台汽车工程学院社团活动日</h3>
+                        <p>丰富多彩的社团活动，展现学生才华与活力</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="科技创新">
+                    <div class="carousel-caption">
+                        <h3>科技创新展示</h3>
+                        <p>学生自主研发的科技项目展示，展现工程学子创新精神</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://t12.baidu.com/it/u=3383507069,264211191&fm=30&app=106&f=JPEG?w=640&h=427&s=48124F9300CA48EC72BC71F003009030?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="艺术表演">
+                    <div class="carousel-caption">
+                        <h3>校园运动会</h3>
+                        <p>激情四射的体育赛事，展现团队精神与运动风采</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="艺术表演">
+                    <div class="carousel-caption">
+                        <h3>校园艺术节</h3>
+                        <p>音乐、舞蹈与戏剧表演，展现学生艺术才华</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carousel-indicators">
+                <div class="indicator active" data-index="0"></div>
+                <div class="indicator" data-index="1"></div>
+                <div class="indicator" data-index="2"></div>
+                <div class="indicator" data-index="3"></div>
+            </div>
+        </div>
+
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>烟台汽车工程学院精彩社团生活</h1>
+                <p>加入50+学生社团，发现你的兴趣，结交志同道合的朋友</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                    <a href="#clubs" class="btn">浏览所有社团</a>
+                    <a href="#events" class="btn btn-outline">查看近期活动</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 社团展示 -->
+        <section id="clubs" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>烟台汽车工程学院社团展示</h2>
+                    <p>探索丰富多样的学生社团，找到属于你的团队</p>
+                </div>
+                
+                <div class="filters">
+                    <button class="filter-btn active">全部社团</button>
+                    <button class="filter-btn">学术科技</button>
+                    <button class="filter-btn">文化艺术</button>
+                    <button class="filter-btn">体育健身</button>
+                    <button class="filter-btn">公益服务</button>
+                    <button class="filter-btn">兴趣娱乐</button>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索社团名称、关键词...">
+                </div>
+                
+                <div class="clubs-container">
+                    <!-- 社团1 -->
+                    <div class="club-card" data-id="1">
+                        <div class="club-image">
+                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="科技创新社">
+                        </div>
+                        <div class="club-content">
+                            <span class="club-category">学术科技</span>
+                            <h3>科技创新社</h3>
+                            <p>致力于科技探索与创新实践，组织编程比赛、机器人设计、AI研究等活动，培养未来科技人才。</p>
+                            <div class="club-stats">
+                                <div class="club-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>128人</span>
+                                </div>
+                                <div class="club-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>每周三活动</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社团2 -->
+                    <div class="club-card" data-id="2">
+                        <div class="club-image">
+                            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="美术设计协会">
+                        </div>
+                        <div class="club-content">
+                            <span class="club-category">文化艺术</span>
+                            <h3>美术设计协会</h3>
+                            <p>为艺术爱好者提供交流平台，定期举办画展、设计工作坊和艺术讲座，提升审美与创作能力。</p>
+                            <div class="club-stats">
+                                <div class="club-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>86人</span>
+                                </div>
+                                <div class="club-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>每周五活动</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社团3 -->
+                    <div class="club-card" data-id="3">
+                        <div class="club-image">
+                            <img src="https://www.ytapc.edu.cn/__local/1/C2/F8/6C49436CC432314A6535149ED60_720B9933_21FFC.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="运动俱乐部">
+                        </div>
+                        <div class="club-content">
+                            <span class="club-category">体育健身</span>
+                            <h3>运动俱乐部</h3>
+                            <p>热爱运动运动的同学聚集地，组织日常训练、校内联赛和校际友谊赛，提升运动技能与团队精神。</p>
+                            <div class="club-stats">
+                                <div class="club-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>156人</span>
+                                </div>
+                                <div class="club-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>每周一、四活动</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社团4 -->
+                    <div class="club-card" data-id="4">
+                        <div class="club-image">
+                            <img src="https://miaobi-lite.bj.bcebos.com/miaobi/5mao/b%27LV8xNzM2MjE0MTE4Ljg2NDQzODM%3D%27/0.png?authorization=bce-auth-v1%2FALTAKmda7zOvhZVbRzBLewvCMU%2F2025-01-07T01%3A42%3A00Z%2F-1%2F%2F4fd3d6554a613dd79bbef69a1926461f9b6d82a7eff9865cc0d6ff75c395cee9" alt="摄影爱好者协会">
+                        </div>
+                        <div class="club-content">
+                            <span class="club-category">文化艺术</span>
+                            <h3>摄影爱好者协会</h3>
+                            <p>用镜头记录烟台汽车工程学院生活，组织外拍活动、摄影展和技术分享会，培养摄影技巧与艺术眼光。</p>
+                            <div class="club-stats">
+                                <div class="club-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>92人</span>
+                                </div>
+                                <div class="club-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>每双周活动</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社团5 -->
+                    <div class="club-card" data-id="5">
+                        <div class="club-image">
+                            <img src="https://appimg.dzwww.com/dzcloud/20250428/c37ace9a914d331ae0bbe8c239cc3f6f.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="环保志愿者协会">
+                        </div>
+                        <div class="club-content">
+                            <span class="club-category">公益服务</span>
+                            <h3>环保志愿者协会</h3>
+                            <p>致力于环境保护与可持续发展，组织烟台汽车工程学院清洁、环保宣传和社区服务活动，倡导绿色生活。</p>
+                            <div class="club-stats">
+                                <div class="club-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>110人</span>
+                                </div>
+                                <div class="club-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>每月两次活动</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 社团6 -->
+                    <div class="club-card" data-id="6">
+                        <div class="club-image">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="编程马拉松社团">
+                        </div>
+                        <div class="club-content">
+                            <span class="club-category">学术科技</span>
+                            <h3>编程马拉松社团</h3>
+                            <p>聚集编程爱好者，定期举办Hackathon活动、技术分享会和项目开发，提升编程能力与团队协作。</p>
+                            <div class="club-stats">
+                                <div class="club-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>78人</span>
+                                </div>
+                                <div class="club-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>每双周活动</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <div class="page-btn active">1</div>
+                    <div class="page-btn">2</div>
+                    <div class="page-btn">3</div>
+                    <div class="page-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 平台功能 -->
+        <section id="features" class="section" style="background-color: #f0f4f8;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>平台功能</h2>
+                    <p>一站式社团管理解决方案</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-search"></i>
+                        <h3>社团发现</h3>
+                        <p>通过分类、关键词和搜索功能轻松找到感兴趣的社团</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-1">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>活动管理</h3>
+                        <p>创建、管理和推广社团活动，支持在线报名与通知</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-2">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>成员管理</h3>
+                        <p>管理社团成员信息，设置不同角色与权限</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-3">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>数据分析</h3>
+                        <p>提供社团活动参与度、成员增长等数据统计</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-4">
+                        <i class="fas fa-comments"></i>
+                        <h3>社团论坛</h3>
+                        <p>为每个社团提供专属讨论区，促进成员交流</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-1">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>移动支持</h3>
+                        <p>全面适配手机和平板设备，随时随地管理社团</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>烟台汽车工程学院社团中心</h3>
+                        <p>连接学生与社团，打造丰富多彩的烟台汽车工程学院生活，促进学生全面发展与成长。</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-weibo"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>快速链接</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#clubs">所有社团</a></li>
+                            <li><a href="#events">近期活动</a></li>
+                            <li><a href="#features">平台功能</a></li>
+                            <li><a href="#">创建社团</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>热门社团</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">科技创新社</a></li>
+                            <li><a href="#">美术设计协会</a></li>
+                            <li><a href="#">运动俱乐部</a></li>
+                            <li><a href="#">摄影爱好者协会</a></li>
+                            <li><a href="#">环保志愿者协会</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>联系我们</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-map-marker-alt"></i> 大学学生活动中心302室</li>
+                            <li><i class="fas fa-envelope"></i> club@ytqcvc.edu</li>
+                            <li><i class="fas fa-phone"></i> 0535-2976177</li>
+                            <li><i class="fas fa-clock"></i> 周一至周五 9:00-17:00</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2023 烟台汽车工程学院社团管理中心. 保留所有权利 | 设计与开发: 学生技术团队</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 详情页面 -->
+    <div class="detail-page" id="detailPage">
+        <div class="detail-header">
+            <div class="container">
+                <button class="back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left"></i> 返回社团列表
+                </button>
+            </div>
+        </div>
+        
+        <div class="detail-content">
+            <div class="detail-hero">
+                <div class="detail-image">
+                    <img id="detailImg" src="" alt="社团详情图">
+                </div>
+                
+                <div class="detail-info">
+                    <h1 id="detailTitle">科技创新社</h1>
+                    <span class="club-category" id="detailCategory">学术科技</span>
+                    
+                    <p id="detailDescription">
+                        科技创新社成立于2015年，致力于为对科技感兴趣的学生提供学习、交流和创新的平台。
+                        我们定期组织编程比赛、机器人设计、AI研究等活动，培养未来科技人才。
+                    </p>
+                    
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <h4>社团成员</h4>
+                            <p id="detailMembers">128</p>
+                        </div>
+                        <div class="detail-stat">
+                            <h4>成立年份</h4>
+                            <p id="detailYear">2015</p>
+                        </div>
+                        <div class="detail-stat">
+                            <h4>活动频率</h4>
+                            <p id="detailFrequency">每周一次</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links" style="margin-top: 1.5rem;">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-description">
+                <h2>社团简介</h2>
+                <p id="detailFullDescription">
+                    科技创新社是一个充满活力的学生组织，聚集了来自计算机科学、电子工程、人工智能等多个领域的优秀学生。
+                    我们的宗旨是"创新、协作、实践"，致力于为学生提供展示才华、交流学习的平台。
+                    <br><br>
+                    社团成立以来，已成功举办了多届烟台汽车工程学院编程马拉松、机器人设计大赛和AI创新挑战赛等活动。
+                    我们的成员在各种科技竞赛中屡获佳绩，包括全国大学生程序设计竞赛金奖、机器人创新设计大赛一等奖等荣誉。
+                    <br><br>
+                    无论你是编程新手还是技术大牛，科技创新社都欢迎你的加入！我们提供：
+                    <ul>
+                        <li>定期的技术培训和分享会</li>
+                        <li>参与实际项目开发的机会</li>
+                        <li>与行业专家交流的机会</li>
+                        <li>参加各类科技竞赛的平台</li>
+                        <li>丰富的团队建设活动</li>
+                    </ul>
+                </p>
+            </div>
+            
+            <div class="activities">
+                <h2 class="detail-description-h2">近期活动</h2>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="编程马拉松活动">
+                    </div>
+                    <div class="activity-content">
+                        <span class="activity-date">2023-11-15 至 2023-11-16</span>
+                        <h3>秋季烟台汽车工程学院编程马拉松</h3>
+                        <p>本次编程马拉松以"智慧烟台汽车工程学院"为主题，参赛者将在24小时内开发出解决烟台汽车工程学院实际问题的应用程序。活动邀请业内专家作为评委，优胜团队将获得丰厚奖品和实习机会。</p>
+                        <p><strong>地点：</strong>学生活动中心3楼创新实验室</p>
+                        <p><strong>参与人数：</strong>已报名 35 队 / 120 人</p>
+                        <button class="btn" style="margin-top: 15px;">立即报名</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="https://zhgk.qdgw.edu.cn/__local/2/43/F2/EF79685B842AC2D46E154240603_2635E977_5E414.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="机器人工作坊">
+                    </div>
+                    <div class="activity-content">
+                        <span class="activity-date">2023-11-25 14:00-17:00</span>
+                        <h3>机器人设计与编程工作坊</h3>
+                        <p>面向初学者的机器人入门工作坊，学习基础的机器人构造、传感器应用和编程控制。无需任何经验，提供所有设备。工作坊结束后，参与者可带走自己组装的机器人。</p>
+                        <p><strong>地点：</strong>工程大楼B座205教室</p>
+                        <p><strong>参与人数：</strong>剩余名额 12 人</p>
+                        <button class="btn" style="margin-top: 15px;">立即报名</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI讲座">
+                    </div>
+                    <div class="activity-content">
+                        <span class="activity-date">2023-12-05 18:30-20:30</span>
+                        <h3>AI前沿技术讲座：生成式模型应用</h3>
+                        <p>邀请AI领域专家分享最新的生成式模型技术及其在实际应用中的案例，包括图像生成、文本创作和代码辅助等方向。讲座后设有问答环节和自由交流时间。</p>
+                        <p><strong>地点：</strong>图书馆报告厅</p>
+                        <p><strong>参与人数：</strong>开放报名中</p>
+                        <button class="btn" style="margin-top: 15px;">立即报名</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="members">
+                <h2 class="detail-description-h2">核心成员</h2>
+                
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="https://b0.bdstatic.com/ugc/img/2024-12-25/69587d6d275024ff4e2652fb3cc81e94.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="成员">
+                        </div>
+                        <div class="member-info">
+                            <h4>张明</h4>
+                            <p>社长</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="https://pic.rmb.bdstatic.com/bjh/6bfdd2227231fb55304eb7cf64844fe11529.jpeg@h_1280?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="成员">
+                        </div>
+                        <div class="member-info">
+                            <h4>李思思</h4>
+                            <p>技术部长</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="https://q5.itc.cn/q_70/images01/20240714/33cf8b5f3d134605b58f4c01d6107142.jpeg?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="成员">
+                        </div>
+                        <div class="member-info">
+                            <h4>王浩</h4>
+                            <p>活动策划</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="https://cm.cau.edu.cn/picture/0/f4b9251e158a4308afe02f7bd4a7adb6.jpeg?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="成员">
+                        </div>
+                        <div class="member-info">
+                            <h4>陈晓</h4>
+                            <p>外联部长</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 轮播图功能
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        let currentIndex = 0;
+        let interval;
+        
+        // 切换轮播图
+        function showSlide(index) {
+            items.forEach(item => item.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            items[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentIndex = index;
+        }
+        
+        // 下一张
+        function nextSlide() {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= items.length) nextIndex = 0;
+            showSlide(nextIndex);
+        }
+        
+        // 上一张
+        function prevSlide() {
+            let prevIndex = currentIndex - 1;
+            if (prevIndex < 0) prevIndex = items.length - 1;
+            showSlide(prevIndex);
+        }
+        
+        // 自动轮播
+        function startAutoPlay() {
+            interval = setInterval(nextSlide, 5000);
+        }
+        
+        // 停止自动轮播
+        function stopAutoPlay() {
+            clearInterval(interval);
+        }
+        
+        // 事件监听
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoPlay();
+            startAutoPlay();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoPlay();
+            startAutoPlay();
+        });
+        
+        // 指示器点击
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+                stopAutoPlay();
+                startAutoPlay();
+            });
+        });
+        
+        // 鼠标悬停时暂停轮播
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+        
+        // 初始化轮播图
+        showSlide(0);
+        startAutoPlay();
+        
+        // 社团数据
+        const clubsData = [
+            {
+                id: 1,
+                title: "科技创新社",
+                category: "学术科技",
+                description: "致力于科技探索与创新实践，组织编程比赛、机器人设计、AI研究等活动，培养未来科技人才。",
+                fullDescription: "科技创新社是一个充满活力的学生组织，聚集了来自计算机科学、电子工程、人工智能等多个领域的优秀学生。我们的宗旨是'创新、协作、实践'，致力于为学生提供展示才华、交流学习的平台。社团成立以来，已成功举办了多届烟台汽车工程学院编程马拉松、机器人设计大赛和AI创新挑战赛等活动。我们的成员在各种科技竞赛中屡获佳绩，包括全国大学生程序设计竞赛金奖、机器人创新设计大赛一等奖等荣誉。",
+                members: 128,
+                year: 2015,
+                frequency: "每周一次",
+                image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                title: "美术设计协会",
+                category: "文化艺术",
+                description: "为艺术爱好者提供交流平台，定期举办画展、设计工作坊和艺术讲座，提升审美与创作能力。",
+                fullDescription: "美术设计协会是烟台汽车工程学院内最具活力的艺术团体之一，汇聚了来自不同专业的艺术爱好者。协会定期举办绘画、平面设计、数字艺术等多种形式的创作活动和工作坊。我们的成员作品曾在多个艺术展览中展出，并多次获得省级艺术设计奖项。协会还与企业合作，为成员提供实际项目经验。无论你是专业艺术生还是业余爱好者，这里都有适合你的创作空间和学习资源。",
+                members: 86,
+                year: 2017,
+                frequency: "每周一次",
+                image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                title: "运动俱乐部",
+                category: "体育健身",
+                description: "热爱运动运动的同学聚集地，组织日常训练、校内联赛和校际友谊赛，提升运动技能与团队精神。",
+                fullDescription: "运动俱乐部是烟台汽车工程学院内最大的体育社团之一，拥有男女两支校队和多个院系分队。俱乐部每周组织三次训练课程，由专业教练指导，涵盖基础技能、战术配合和体能训练。我们每年举办校内运动联赛，并与其他高校进行友谊赛。俱乐部成员曾多次在省级大学生运动比赛中获得优异成绩。无论你是专业选手还是运动爱好者，这里都有适合你的位置。",
+                members: 156,
+                year: 2014,
+                frequency: "每周三次",
+                image: "https://img0.baidu.com/it/u=4165051802,1791185741&fm=253&fmt=auto&app=120&f=JPEG?w=1020&h=500?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                title: "摄影爱好者协会",
+                category: "文化艺术",
+                description: "用镜头记录烟台汽车工程学院生活，组织外拍活动、摄影展和技术分享会，培养摄影技巧与艺术眼光。",
+                fullDescription: "摄影爱好者协会致力于推广摄影艺术，为烟台汽车工程学院内的摄影爱好者提供交流与学习的平台。协会定期组织外拍活动、技术讲座和作品点评会，涵盖人像、风景、纪实等多种摄影类型。我们拥有专业的摄影棚和设备供成员使用，并定期举办烟台汽车工程学院摄影展。协会成员作品多次在国内外摄影比赛中获奖，部分作品被专业摄影杂志刊登。",
+                members: 92,
+                year: 2016,
+                frequency: "每双周一次",
+                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                title: "环保志愿者协会",
+                category: "公益服务",
+                description: "致力于环境保护与可持续发展，组织烟台汽车工程学院清洁、环保宣传和社区服务活动，倡导绿色生活。",
+                fullDescription: "环保志愿者协会是一个以环境保护为宗旨的学生组织，致力于在烟台汽车工程学院和社区推广可持续发展理念。我们定期组织烟台汽车工程学院清洁日、垃圾分类宣传、环保手工坊等活动，并与多个环保组织合作开展社区服务项目。协会还开展环境教育项目，走进中小学进行环保知识普及。我们的目标是培养成员的环保意识和社会责任感，为建设美丽中国贡献力量。",
+                members: 110,
+                year: 2018,
+                frequency: "每月两次",
+                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                title: "编程马拉松社团",
+                category: "学术科技",
+                description: "聚集编程爱好者，定期举办Hackathon活动、技术分享会和项目开发，提升编程能力与团队协作。",
+                fullDescription: "编程马拉松社团专注于为编程爱好者提供实践与创新的平台。我们每月举办一次小型Hackathon活动，每学期举办一次大型编程马拉松比赛。社团定期邀请行业专家进行技术分享，并组织项目开发小组，让成员在实际项目中提升技能。社团成员多次在国家级编程竞赛中获得优异成绩，部分成员开发的应用程序已上线应用商店。",
+                members: 78,
+                year: 2019,
+                frequency: "每双周一次",
+                image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // DOM元素
+        const detailPage = document.getElementById('detailPage');
+        const backBtn = document.getElementById('backBtn');
+        const clubCards = document.querySelectorAll('.club-card');
+        
+        // 详情页元素
+        const detailImg = document.getElementById('detailImg');
+        const detailTitle = document.getElementById('detailTitle');
+        const detailCategory = document.getElementById('detailCategory');
+        const detailDescription = document.getElementById('detailDescription');
+        const detailFullDescription = document.getElementById('detailFullDescription');
+        const detailMembers = document.getElementById('detailMembers');
+        const detailYear = document.getElementById('detailYear');
+        const detailFrequency = document.getElementById('detailFrequency');
+
+        // 点击社团卡片显示详情页
+        clubCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const clubId = this.getAttribute('data-id');
+                const clubData = clubsData.find(club => club.id == clubId);
+                
+                if (clubData) {
+                    // 填充详情页数据
+                    detailImg.src = clubData.image;
+                    detailImg.alt = clubData.title;
+                    detailTitle.textContent = clubData.title;
+                    detailCategory.textContent = clubData.category;
+                    detailDescription.textContent = clubData.description;
+                    detailFullDescription.textContent = clubData.fullDescription;
+                    detailMembers.textContent = clubData.members;
+                    detailYear.textContent = clubData.year;
+                    detailFrequency.textContent = clubData.frequency;
+                    
+                    // 显示详情页
+                    detailPage.classList.add('active');
+                    
+                    // 滚动到顶部
+                    window.scrollTo(0, 0);
+                }
+            });
+        });
+
+        // 返回按钮事件
+        backBtn.addEventListener('click', function() {
+            detailPage.classList.remove('active');
+        });
+
+        // 社团筛选功能
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有按钮的active类
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 为当前点击的按钮添加active类
+                button.classList.add('active');
+            });
+        });
+        
+        // 分页按钮交互
+        const pageButtons = document.querySelectorAll('.page-btn');
+        
+        pageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有按钮的active类
+                pageButtons.forEach(btn => btn.classList.remove('active'));
+                // 为当前点击的按钮添加active类
+                button.classList.add('active');
+            });
+        });
+        
+        // 平滑滚动导航
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新导航活动状态
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // 滚动时高亮导航
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if(pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 卡片悬停效果增强
+        clubCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // 动画效果触发
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(el => {
+                el.style.opacity = 0;
+            });
+            
+            setTimeout(() => {
+                fadeElements.forEach(el => {
+                    el.style.opacity = 1;
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
